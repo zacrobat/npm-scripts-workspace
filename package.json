@@ -1,0 +1,33 @@
+{
+  "name": "npm-scripts-workspace",
+  "version": "1.0.0",
+  "scripts": {
+    "uglify": "mkdir -p dist/js && uglifyjs src/js/*.js -m -b -o dist/js/app.js",
+    "test": "echo \"Error: no test specified, Zac\" && exit 1",
+    "scss": "node-sass --output-style nested --indent-type tab --indent-width 4 -o dist/css src/scss",
+    "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
+    "lint": "eslint src/js --ignore",
+    "imagemin": "imagemin src/images dist/images -p",
+    "icons": "svgo -f src/images/icons &amp;&amp; mkdir -p dist/images && svg-sprite-generate -d src/images/icons -o dist/images/icons.svg",
+    "serve": "browser-sync start --server --files 'dist/css/*.css, dist/js/*.js'",
+    "build:css": "npm run scss && npm run autoprefixer",
+    "watch:css": "onchange 'src/scss/*.scss' -- npm run build:css",
+    "build:js": "npm run lint && npm run uglify",
+    "build:all": "npm run build:css && npm run build:js",
+    "watch:js": "onchange 'src/js/*.js' -- npm run build:js",
+    "watch:all": "parallelshell 'npm run serve' 'npm run watch:css' 'npm run watch:js'"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "browser-sync": "^2.18.12",
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1",
+    "node-sass": "^4.5.3",
+    "onchange": "^3.2.1",
+    "parallelshell": "^2.0.0",
+    "postcss-cli": "^4.0.0",
+    "svg-sprite-generator": "0.0.7",
+    "svgo": "^0.7.2",
+    "uglify-js": "^3.0.10"
+  }
+}
