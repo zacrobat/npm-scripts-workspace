@@ -1,7 +1,5 @@
-console.log("hi there, amigo tres!");
+console.log("one");
 
-console.log("yo");
+console.log("two");
 
-console.log("dre");
-
-console.log("kick in the bass!");
+console.log("three");
