@@ -4,7 +4,10 @@ console.log("two");
 
 console.log("three");
 
-function newClass() {
-    let e = document.getElementsByTagName("a");
-    e.classname = +" buttonStyle";
+function doThis() {
+    let e = document.getElementById("one-button");
+    console.log(e);
+    if (e.getAttribute("aria-expanded") == "false") {
+        e.setAttribute("aria-expanded", "true");
+    } else e.setAttribute("aria-expanded", "false");
 }
